@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameStore — Dead reils</title>
+    <style>
+      /* Сброс и базовые стили */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background-color: #0f1419;
+        color: #c7d5e0;
+        line-height: 1.5;
+      }
+
+      /* Шапка */
+      header {
+        background-color: #171a21;
+        padding: 20px;
+      }
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8em;
+        font-weight: bold;
+        color: aqua;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        color: #c7d5e0;
+        text-decoration: none;
+        font-size: 1.1em;
+        transition: color 0.5s;
+      }
+
+      .nav-links a:hover {
+        color: aqua;
+      }
+
+      /* Основной контент */
+      main {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 2.5em;
+        color: #66c0f4;
+      }
+
+      /* Сетка игр */
+      .games-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      .game-card {
+        background-color: #1b2838;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s;
+      }
+
+      .game-card:hover {
+        transform: translateY(-10px);
+      }
+
+      img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+
+      .game-info {
+        padding: 15px;
+      }
+
+      .game-title {
+        font-size: 1.3em;
+        margin-bottom: 10px;
+        color: white;
+      }
+
+      .game-price {
+        font-size: 1.4em;
+        color: yellowgreen;
+        font-weight: bold;
+      }
+
+      /* Футер */
+      footer {
+        background-color: #171a21;
+        text-align: center;
+        padding: 30px;
+        margin-top: 60px;
+        color: aqua;
+      }
+
+      /* Стили для блока акции */
+      .promotion {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .promotion h2 {
+        font-size: 2em;
+        color: aqua;
+        margin-bottom: 20px;
+      }
+
+      .discounts-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .discount-field {
+        width: 100px;
+        padding: 15px;
+        border: 2px solid #c7d5e0;
+        border-radius: 8px;
+        font-size: 1.5em;
+        text-align: center;
+        background-color: #1b2838;
+        transition: border-color 0.3s;
+      }
+
+      .highlight {
+        border-color: yellow;
+      }
+
+      #spin-btn {
+        padding: 10px 20px;
+        background-color: aqua;
+        border: none;
+        color: #171a21;
+        font-size: 1.2em;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      #spin-btn:hover {
+        background-color: #2a475e;
+        color: #c7d5e0;
+      }
+
+      #spin-btn:disabled {
+        background-color: #aaa;
+        cursor: not-allowed;
+      }
+
+      /* Модальное окно */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+
+      .modal-content {
+        background-color: #1b2838;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        text-align: center;
+        border-radius: 8px;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover {
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .original-price {
+        text-decoration: line-through;
+        color: #aaa;
+        margin-right: 5px;
+      }
+
+      .new-price {
+        color: yellowgreen;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+        
+    <h1>
+        phone : +7 967 065 62-75 обратитесь на этот номер чтобы купить товар/contact this number to purchase the product
+    </h1>
+  
+    <header>
+      <nav>
+        <div class="logo">GameStore</div>
+        <div class="nav-links" id="nav-links">
+          <a href="#">Главная</a>
+          <a href="#">Новинки</a>
+          <a href="#">Акции</a>
+          <a href="#">Жанры</a>
+          <a href="#">Поддержка</a>
+        </div>
+      </nav>
+    </header>
+
+ 
+    <main>
+      <h1>Dead reils</h1>
+
+      <div class="games-grid">
+
+      <div class="game-card">
+        <img
+          src="https://cdn.gamestatic.net/files/gameland/publications/6e5e6153-8687-11f0-a88a-72f8abb728b5/article/pic_list_m.jpg"
+          alt="">
+        <div class="game-info">
+          <div class="game-title">Ghost train from the dead rails</div>
+          <div class="game-price">150 rub</div>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://cdn.gamestatic.net/files/editor_uploads/NikolayD/2025/klassy-poezda-v-roblox-dead-rails_4.jpg"
+          alt="">
+        <div class="game-info">
+          <div class="game-title">Armored train from dead rails</div>
+          <div class="game-price">110 rub</div>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://i.ytimg.com/vi/6Sw0AnBHe9c/hqdefault.jpg" alt="">
+        <div class="game-info">
+          <div class="game-title">The presidential train from the dead rails</div>
+          <div class="game-price">95 rub</div>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://i.ytimg.com/vi/ocPalc29ZrM/hqdefault.jpg" alt="">
+        <div class="game-info">
+          <div class="game-title">Gold rush train from dead rails</div>
+          <div class="game-price">70 rub</div>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://static.deltiasgaming.com/2025/05/gold-1.png" alt="">
+        <div class="game-info">
+          <div class="game-title">cattle train from dead rails</div>
+          <div class="game-price">70 rub</div>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://csgo-guides.ru/wp-content/uploads/2025/04/alamo-dead-rails.webp" alt="">
+        <div class="game-info">
+          <div class="game-title">The Alamo class of dead rails</div>
+          <div class="game-price">20 rub</div>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://avatars.mds.yandex.net/get-vthumb/2961266/3367f60637b1b95d3bb258755bc0d64a/800x450" alt="">
+        <div class="game-info">
+          <div class="game-title">conductor class from dead rails</div>
+          <div class="game-price">30 rub</div>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://avatars.mds.yandex.net/get-vthumb/4837747/7d525129fc55deb001cb4a4060535f46/800x450" alt="">
+        <div class="game-info">
+          <div class="game-title">The werewolf class, the necromancer class, the magnate class, and the packer class in
+            Dead Rails.</div>
+          <div class="game-price">150 rub</div>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://pic.rutubelist.ru/video/2025-06-06/85/a2/85a26c5898c599b21810df3e14c14834.jpg" alt="">
+        <div class="game-info">
+          <div class="game-title">miner's class in dead rails</div>
+          <div class="game-price">5 rub</div>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://i.ytimg.com/vi/MJ4WpoZSxF4/maxresdefault.jpg" alt="">
+        <div class="game-info">
+          <div class="game-title">Musician class+ Necromancer class in dead rails</div>
+          <div class="game-price">40 rub</div>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://i.ytimg.com/vi/0XM2jLSCkGU/maxresdefault.jpg" alt="">
+        <div class="game-info">
+          <div class="game-title">Vampire class in dead rails</div>
+          <div class="game-price">30 rub</div>
+        </div>
+      </div>
+      <div class="game-card">
+        <img src="https://i.ytimg.com/vi/eSm5GXwy98c/maxresdefault.jpg" alt="">
+        <div class="game-info">
+          <div class="game-title">The wooden train in dead rails</div>
+          <div class="game-price">100 rub</div>
+        </div>
+      </div>
+      </div>
+
+      <div class="promotion">
+        <h2>Акция: Крутите колесо скидок!</h2>
+        <div class="discounts-container">
+          <div class="discount-field" data-discount="5">5%</div>
+          <div class="discount-field" data-discount="10">10%</div>
+          <div class="discount-field" data-discount="4">4%</div>
+          <div class="discount-field" data-discount="2">2%</div>
+          <div class="discount-field" data-discount="3">3%</div>
+          <div class="discount-field" data-discount="9">9%</div>
+          <div class="discount-field" data-discount="1">1%</div>
+          <div class="discount-field" data-discount="7">7%</div>
+          <div class="discount-field" data-discount="6">6%</div>
+        </div>
+        <button id="spin-btn" onclick="spinner()">Крутить</button>
+      </div>
+    </main>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closemodal()">&times;</span>
+        <p id="discount-msg"></p>
+      </div>
+    </div>
+    <h1>
+      при связи с владельцем при покупки напишите название товара и % скидки/when contacting the owner at the time of purchase, write the product name and % discount
+    </h1>
+
+    <!-- Футер -->
+    <footer>
+      <p>&copy; 2025 GameStore. Все права защищены.</p>
+    </footer>
+
+    <script>
+      let fields = document.querySelectorAll(".discount-field");
+      let spinBtn = document.getElementById("spin-btn");
+      let modal = document.getElementById("modal");
+      let msg = document.getElementById("discount-msg");
+      let originalPrices = [];
+      let priceElements = document.querySelectorAll(".game-price");
+
+      for (let i = 0; i < priceElements.length; i++) {
+        let p = priceElements[i];
+        let priceText = p.textContent.replace(" ₽", "");
+        originalPrices.push(parseFloat(priceText));
+      }
+
+      function closemodal() {
+        modal.style.display = "none";
+      }
+
+      function spinner() {
+        spinBtn.disabled = true;
+        let index = 0;
+        let spins = Math.floor(Math.random() * 20) + 10; // 10-30 оборотов
+
+        let interval = setInterval(function () {
+          for (let j = 0; j < fields.length; j++) {
+            fields[j].classList.remove("highlight");
+          }
+          fields[index].classList.add("highlight");
+          index = (index + 1) % fields.length;
+          spins--;
+
+          if (spins <= 0) {
+            clearInterval(interval);
+            let stopIndex = (index - 1 + fields.length) % fields.length;
+            for (let k = 0; k < fields.length; k++) {
+              fields[k].classList.remove("highlight");
+            }
+            fields[stopIndex].classList.add("highlight");
+            let discount = parseInt(fields[stopIndex].dataset.discount);
+            msg.textContent =
+              "Поздравляем! Для вас действует скидка " + discount + "%";
+            modal.style.display = "block";
+            applyDiscount(discount);
+          }
+        }, 200);
+      }
+
+      function applyDiscount(disc) {
+        if (disc === 0) {
+          return;
+        }
+        let priceElements = document.querySelectorAll(".game-price");
+        for (let i = 0; i < priceElements.length; i++) {
+          let p = priceElements[i];
+          let orig = originalPrices[i];
+          let newPrice = Math.floor(orig * (1 - disc / 100));
+          p.innerHTML =
+            '<span class="original-price">' +
+            orig +
+            ' ₽</span> <span class="new-price">' +
+            newPrice +
+            " ₽</span>";
+        }
+      }
+    </script>
+  </body>
+</html>
